@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Скриншотер</title>
+
+<style>
+body{
+  font-family:system-ui,-apple-system,sans-serif;
+  background:#f8f9fa;
+  margin:0;
+  padding:20px;
+  color:#333;
+}
+
+.container{
+  max-width:700px;
+  margin:0 auto;
+}
+
+h1{
+  text-align:center;
+  color:#1a73e8;
+}
+
+.form{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  background:white;
+  padding:24px;
+  border-radius:12px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.1);
+}
+
+input[type=url]{
+  padding:12px;
+  font-size:16px;
+  border:1px solid #ddd;
+  border-radius:8px;
+}
+
+.options{
+  display:flex;
+  gap:20px;
+}
+
+button{
+  background:#1a73e8;
+  color:white;
+  border:none;
+  padding:14px;
+  font-size:16px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#0d65d6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Скриншотер</h1>
+
+<form class="form" action="/screenshot" method="GET">
+
+<input 
+type="url"
+name="url"
+placeholder="https://example.com"
+required
+>
+
+<div class="options">
+
+<label>
+<input type="radio" name="full_page" value="true" checked>
+Полная страница
+</label>
+
+<label>
+<input type="radio" name="full_page" value="false">
+Только видимая часть
+</label>
+
+</div>
+
+<button type="submit">Сделать скриншот</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
