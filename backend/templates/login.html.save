@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auth</title>
+<style>
+/* Сброс */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY — теперь это layout */
+body {
+  display: flex;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: #e5e7eb;
+}
+
+/* ===== SIDEBAR (из jinja_temp.html) ===== */
+.sidebar {
+  width: 220px;
+  min-height: 100vh;
+
+  background: rgba(15, 23, 42, 0.9);
+  padding: 20px;
+}
+
+/* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+.auth-card {
+  margin: auto; /* ВОТ ЭТО КЛЮЧ — центрирует */
+  width: 380px;
+  padding: 40px 30px;
+
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Заголовок */
+.auth-card h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+/* Подзаголовок */
+.subtitle {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 25px;
+}
+
+/* Форма */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Инпуты */
+input {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 14px;
+
+  outline: none;
+  transition: 0.2s;
+}
+
+input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+input::placeholder {
+  color: #64748b;
+}
+
+/* Кнопка */
+.button {
+  margin-top: 10px;
+  padding: 14px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+\\\\\\\\\\\\\\\\\
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background: #0b0d12;
+    font-family: Arial, sans-serif;
+    color: #e5e7eb;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 260px;
+    height: 100%;
+    background: rgba(20, 22, 30, 0.75);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    padding: 20px;
+}
+
+/* Лого */
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+/* Навигация */
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-item {
+    position: relative;
+    padding: 14px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #9ca3af;
+    transition: 0.25s;
+    overflow: hidden;
+}
+
+/* hover */
+.nav-item:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.04);
+}
+
+/* светящаяся линия */
+.nav-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 3px;
+    height: 0%;
+    background: linear-gradient(#3b82f6, #22c55e);
+    transform: translateY(-50%);
+    transition: 0.25s;
+    border-radius: 4px;
+}
+
+.nav-item:hover::before {
+    height: 60%;
+}
+
+/* активная кнопка */
+.nav-item.active {
+    color: #fff;
+    background: rgba(255,255,255,0.06);
+}
+
+.nav-item.active::before {
+    height: 70%;
+}
+
+/* ===== CONTENT ===== */
+.content {
+    flex: 1;
+    padding: 40px;
+}
+
+/* Просто для вида */
+.card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+</style>
+</head>
+<body>
+{% include "jinja_temp.html" %}
+<div class="auth-card">
+    <h1>Login</h1>
+    <div class="subtitle">Enter data to continue</div>
+
+    <form action="/post_login", method="POST">
+        <input type="text" name="login" placeholder="Login" required>
+        <input type="password" name="passwd" placeholder="Password" required>
+        <input type="password" name="rep_passwd" placeholder="Repit password" required>
+
+        <button class="button" type="submit">Sign in</button>
+    </form>
+</div>
+
+</body>
+</html>	
+

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APIScreenshot</title>
+
+<style>
+/* ===== FILE UPLOAD FORM ===== */
+.form-file {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Стили для input type="file" */
+input[type="file"] {
+    padding: 12px 14px;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.6);
+    color: #e5e7eb;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+input[type="file"]::file-selector-button {
+    padding: 8px 16px;
+    margin-right: 12px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-1px);
+}
+
+input[type="file"]:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+/* Убираем стандартный <br> отступ */
+.form-file br {
+    display: none;
+}
+
+/* Кнопка Upload — в том же стиле */
+.form-file button {
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.form-file button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+/////////
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== BODY (layout как в auth) ===== */
+body {
+  display: flex;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0b0d12;	
+  color: #e5e7eb;
+  margin: 0px;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  min-height: 100vh;
+  padding: 20px;
+  background: rgba(20, 22, 30, 0.75);
+  border-right: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ===== NAV ===== */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-item {
+  position: relative;
+  display: block;
+
+  padding: 14px 16px;
+  border-radius: 12px;
+
+  text-decoration: none;
+  color: #9ca3af;
+  transition: 0.25s;
+}
+
+/* hover */
+.nav-item:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.05);
+}
+
+/* линия */
+.nav-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 0%;
+  background: linear-gradient(#3b82f6, #22c55e);
+  transform: translateY(-50%);
+  transition: 0.25s;
+  border-radius: 4px;
+}
+
+.nav-item:hover::before {
+  height: 60%;
+}
+
+.nav-item.active {
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+}
+
+.nav-item.active::before {
+  height: 70%;
+}
+
+/* ===== КОНТЕЙНЕР (ПЕРЕДЕЛАЛ ПОД AUTH-CARD) ===== */
+.container {
+  margin: 20px;
+  width: 420px;
+  height: 490px;
+  padding: 30px 23px;
+
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== TITLE ===== */
+h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+/* текст */
+p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+/* ===== FORM ===== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ===== INPUT ===== */
+input[type="url"] {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 14px;
+
+  outline: none;
+  transition: 0.2s;
+}
+
+input::placeholder {
+  color: #64748b;
+}
+
+input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* ===== OPTIONS (радио кнопки) ===== */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.options label {
+  font-size: 14px;
+  color: #94a3b8;
+  cursor: pointer;
+}
+
+/* ===== BUTTON ===== */
+button {
+  margin-top: 10px;
+  padding: 14px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+</style>
+</head>
+
+<body>
+{% include "jinja_temp.html" %}
+
+<div class="container">
+
+<h1>Screenshot Tool</h1>
+<h4>This website is currently under development.
+We’ll be launching soon.</h4>
+<p></p>
+{% if login_name %}
+<p> {{response}} </p>
+<p> {{ login_name }} </p>
+<p> your tryes: {{ tryes }} </p>
+<p> tryes_spent: {{ tryes_spent }} </p>
+{% else %}
+<p> You are not authorized </p>
+{% endif %}
+<form class="form" action="/screenshot" method="GET">
+
+<input 
+type="url"
+name="url"
+placeholder="https://example.com"
+required
+>
+
+<div class="options">
+
+<label>
+<input type="radio" name="full_page" value="true" checked>
+Full Page
+<input type="radio" name="full_page" value="false">
+Visible Area Only
+</label>
+
+</div>
+
+<button type="submit">Take Screenshot</button>
+</form>
+<p></p>
+<form class="form form-file" action="/css_txt_screen" method="post" enctype="multipart/form-data">
+    <input type="file" name="upload_file" accept=".csv,.txt">
+    <button type="submit">Upload .csv or .txt</button>
+</form>
+</div>
+</body>
+</html>
+
